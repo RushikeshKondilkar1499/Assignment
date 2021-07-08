@@ -1,0 +1,189 @@
+////////////////////////////////////////////////Assignment 1//////////////////////////////////////////////////////////////
+
+import java.util.Scanner;
+
+public class ElectricityBill {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		double pricePerUnit=1.20;
+		double TotalBill=0;
+		System.out.println("Enter no of units");
+		double units=sc.nextDouble();
+		if(units<100) {
+			TotalBill=units*pricePerUnit;
+		}
+		else if(units>=100&& units<=300) {
+			TotalBill=99*pricePerUnit+(units-99)*2;
+		}
+		else {
+			TotalBill=99*pricePerUnit+(200)*2+(units-299)*3;
+		}
+		System.out.println("The total bill is------->RS."+TotalBill);
+		
+
+	}
+
+}
+
+////////////////////////////////////////////////Assignment 2 and Assignment 3//////////////////////////////////////////////////////////////
+
+
+public class ScoreBoard {
+
+	public static void main(String[] args) {
+		int stat1[]= {0,1,0,1,4,2,
+				     1,1,1,1,1,1,
+				     4,2,1,6,1,0,
+				     1,1,0,0,0,6,
+				     4,4,0,0,6,1};
+		int stat2[]= {0,1,0,1,4,2,
+			     1,1,4,1,1,1,
+			     0,2,1,6,1,0,
+			     1,1,2,6,0,6,
+			     4,4,0,0,6,1};
+		int stat3[]= {0,1,0,1,4,2,
+			     1,1,1,1,1,1,
+			     4,2,1,6,1,0,
+			     1,1,0,1,0,6,
+			     4,4,0,0,0,0};
+		int stat4[]= {0,1,0,1,4,2,
+			     0,0,0,0,0,0,
+			     4,2,1,6,1,0,
+			     1,1,0,0,0,6,
+			     4,4,0,0,6,1};
+		int stat5[]= {0,1,0,1,4,2,
+			     1,1,1,1,1,1,
+			     4,2,1,6,1,0,
+			     1,1,0,0,0,6,
+			     4,6,0,0,6,1};
+		System.out.println("Data of one inning");
+		statOfOneInning(stat1);
+		System.out.println("==========================================================");
+		System.out.println("Data of five inning");
+		statOfFiveInning(stat1,stat2,stat3,stat4,stat5);
+		System.out.println("==========================================================");
+		
+	}
+	public static void statOfOneInning(int stat[]) {
+		int totalScore=0;
+		int ScoreArray []= {0,0,0,0,0,0,0}; 
+		for(int a:stat) {
+			ScoreArray[a]++;
+			totalScore=totalScore+a;
+		}
+		System.out.println("TOTAL RUNS-->"+totalScore);
+		System.out.println("NUMBER OF 0-->"+ScoreArray[0]);
+		System.out.println("NUMBER OF 1-->"+ScoreArray[1]);
+		System.out.println("NUMBER OF 2-->"+ScoreArray[2]);
+		System.out.println("NUMBER OF 3-->"+ScoreArray[3]);
+		System.out.println("NUMBER OF 4-->"+ScoreArray[4]);
+		System.out.println("NUMBER OF 6-->"+ScoreArray[6]);
+		System.out.println("STRIKE RATE-->"+(double)totalScore/5);
+		
+
+	}
+	public static double TotalScorePerInning(int stat[]) {
+		int totalScore=0;
+		for(int a:stat) {
+			totalScore=totalScore+a;
+		}
+		return totalScore;
+	}
+	
+	public static void statOfFiveInning(int stat1[],int stat2[],int stat3[],int stat4[],int stat5[]) {
+		double TotalScore=(TotalScorePerInning(stat1) + TotalScorePerInning(stat2)+TotalScorePerInning(stat3)
+		                  +TotalScorePerInning(stat4)+TotalScorePerInning(stat5));
+		double avgScore=TotalScore/5;
+		System.out.println("Average Score Per innings-->"+avgScore);
+		System.out.println("Total runs in last 5 innings -->"+TotalScore);
+		System.out.println("Strike rate of lasr 5 innings-->"+TotalScore/25);
+		
+		int ScoreArray []= {0,0,0,0,0,0,0}; 
+		for(int a:stat1) {
+			ScoreArray[a]++;
+			}
+		for(int a:stat2) {
+			ScoreArray[a]++;
+			}
+		for(int a:stat3) {
+			ScoreArray[a]++;
+			}
+		for(int a:stat4) {
+			ScoreArray[a]++;
+			}
+		for(int a:stat5) {
+			ScoreArray[a]++;
+			}
+		System.out.println("NUMBER OF 0-->"+ScoreArray[0]);
+		System.out.println("NUMBER OF 1-->"+ScoreArray[1]);
+		System.out.println("NUMBER OF 2-->"+ScoreArray[2]);
+		System.out.println("NUMBER OF 3-->"+ScoreArray[3]);
+		System.out.println("NUMBER OF 4-->"+ScoreArray[4]);
+		System.out.println("NUMBER OF 6-->"+ScoreArray[6]);
+		
+	}
+
+
+}
+
+
+////////////////////////////////////////////////Assignment 5//////////////////////////////////////////////////////////////
+
+
+public class Account {
+
+	public static void main(String[] args) {
+		myAccount a=new myAccount(1234, 2000, "abcd");
+		a.DisplayAccount();
+	}
+
+}
+class myAccount{
+	   private long accountNo;
+	   private int accountBalance;
+	   private String password;
+	   private static String bankName="MYBANK";
+	public myAccount(long accountNo, int accountBalance, String password) {
+		super();
+		this.accountNo = accountNo;
+		this.accountBalance = accountBalance;
+		this.password = password;
+	}
+	   
+	 public long getAccountNo() {
+		return accountNo;
+	}
+
+	public void setAccountNo(long accountNo) {
+		this.accountNo = accountNo;
+	}
+
+	public int getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(int accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public  void DisplayAccount() {
+		 System.out.println("Bank name-->"+bankName);
+		 System.out.println("AccountNo-->"+getAccountNo());
+		 System.out.println("Account Balance-->"+getAccountBalance());
+		
+		 
+	 }
+}
+
+
