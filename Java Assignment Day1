@@ -180,7 +180,7 @@ class myAccount{
 	public  void DisplayAccount() {
 		 System.out.println("Bank name-->"+bankName);
 		 System.out.println("AccountNo-->"+getAccountNo());
-		 System.out.println("Account Balance-->"+getAccountBalance());
+		 System.out.println("Account Balance-->RS."+getAccountBalance());
 		
 		 
 	 }
