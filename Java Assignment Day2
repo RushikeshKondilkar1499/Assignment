@@ -1,0 +1,403 @@
+///////////////////////////////////////////////////////////////////Assignment 1//////////////////////////////////////////////////////////////////////////
+package AssignmentDay2;
+
+
+
+public class Assignment {
+
+	public static void main(String[] args) {
+//		Account a=new Account(1234, 5000, "raj");
+//		a.displayAccount();
+		
+		SavingAccount s=new SavingAccount(1234, 5000, "ram", 1000);
+		s.displayAccount();
+
+	}
+
+}
+
+class Account{
+	private long accountNo;
+	private double accountBalance;
+	private String accountPassword;
+	private static String bankName;
+	public Account(long accountNo, double accountBalance, String accountPassword) {
+		super();
+		this.accountNo = accountNo;
+		this.accountBalance = accountBalance;
+		this.accountPassword = accountPassword;
+	}
+	/////////////////setters
+	public void setAccountNo(long accountNo) {
+		this.accountNo = accountNo;
+	}
+	public void setAccountBalance(double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+	public void setAccountPassword(String accountPassword) {
+		this.accountPassword = accountPassword;
+	}
+	public static void setBankName(String bankName) {
+		Account.bankName = bankName;
+	}
+	/////getters
+	public long getAccountNo() {
+		return accountNo;
+	}
+	public double getAccountBalance() {
+		return accountBalance;
+	}
+	public String getAccountPassword() {
+		return accountPassword;
+	}
+	public static String getBankName() {
+		return bankName;
+	}
+	
+	public void displayAccount() {
+		System.out.println("Accounts details are:-->");
+		System.out.println("Bank name-->"+getBankName());
+		System.out.println("Account No-->"+getAccountNo());
+		System.out.println("Account Balance-->"+getAccountBalance());
+		System.out.println("Account Password-->"+getAccountPassword());
+	}
+	
+	
+}
+
+
+//////////////////////////////////////saving account//////////////////////
+class SavingAccount extends Account{
+    private static double minimumBalance;
+	public SavingAccount(long accountNo, double accountBalance, String accountPassword,double minimumBalance) {
+		super(accountNo, accountBalance, accountPassword);
+		this.minimumBalance=minimumBalance;
+	}
+	
+	public static double getMinimumBalance() {
+		return minimumBalance;
+	}
+
+	
+
+	@Override
+	public void displayAccount() {
+		super.displayAccount();
+		System.out.println("minimum balance is-->"+this.minimumBalance);
+	}
+	
+}
+
+
+/////////////////////////////////current account////////////////////////
+class CurrentAccount extends Account{
+	 private static double overdraftLimit;
+	public CurrentAccount(long accountNo, double accountBalance, String accountPassword,double overDraftLimit) {
+		super(accountNo, accountBalance, accountPassword);
+		this.overdraftLimit=overDraftLimit;
+	}
+	
+	public void displayAccount() {
+		super.displayAccount();
+		System.out.println("minimum balance is-->"+this.overdraftLimit);
+	}
+	
+}
+	
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////Assignment 2//////////////////////////////////////////////////////////////////////////
+package AssignmentDay2_2;
+
+public class Assignment2 {
+
+	public static void main(String[] args) {
+		SavingAccount s=new SavingAccount(1234, 5000, "ram", 1000);
+		s.displayAccount();
+		s.withdraw(500);
+		s.displayAccount();
+		
+		
+		CurrentAccount c=new CurrentAccount(5678, 7000, "raj", 2000);
+		c.displayAccount();
+		c.withdraw(1000);
+		c.displayAccount();
+	}
+
+}
+abstract class Account{
+	private long accountNo;
+	private double accountBalance;
+	private String accountPassword;
+	private static String bankName;
+	public Account(long accountNo, double accountBalance, String accountPassword) {
+		super();
+		this.accountNo = accountNo;
+		this.accountBalance = accountBalance;
+		this.accountPassword = accountPassword;
+	}
+	/////////////////setters
+	public void setAccountNo(long accountNo) {
+		this.accountNo = accountNo;
+	}
+	public void setAccountBalance(double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+	public void setAccountPassword(String accountPassword) {
+		this.accountPassword = accountPassword;
+	}
+	public static void setBankName(String bankName) {
+		Account.bankName = bankName;
+	}
+	/////getters
+	public long getAccountNo() {
+		return accountNo;
+	}
+	public double getAccountBalance() {
+		return accountBalance;
+	}
+	public String getAccountPassword() {
+		return accountPassword;
+	}
+	public static String getBankName() {
+		return bankName;
+	}
+	
+	public void displayAccount() {
+		System.out.println("Accounts details are:-->");
+		System.out.println("Bank name-->"+getBankName());
+		System.out.println("Account No-->"+getAccountNo());
+		System.out.println("Account Balance-->"+getAccountBalance());
+		System.out.println("Account Password-->"+getAccountPassword());
+	}
+	
+	public abstract void withdraw(double amount);
+	
+	
+}
+
+
+//////////////////////////////////////saving account//////////////////////
+class SavingAccount extends Account{
+    private static double minimumBalance;
+	public SavingAccount(long accountNo, double accountBalance, String accountPassword,double minimumBalance) {
+		super(accountNo, accountBalance, accountPassword);
+		this.minimumBalance=minimumBalance;
+	}
+	
+	public static double getMinimumBalance() {
+		return minimumBalance;
+	}
+
+	
+
+	@Override
+	public void withdraw(double amount) {
+		if(getAccountBalance()>=amount) {
+			System.out.println("not available");
+		}
+		else {
+		setAccountBalance(getAccountBalance()-amount);
+		}
+	}
+
+	@Override
+	public void displayAccount() {
+		super.displayAccount();
+		System.out.println("minimum balance is-->"+this.minimumBalance);
+		System.out.println("====================================================================");
+	}
+	
+}
+
+
+/////////////////////////////////current account////////////////////////
+ class CurrentAccount extends Account{
+	 private static double overdraftLimit;
+	public CurrentAccount(long accountNo, double accountBalance, String accountPassword,double overDraftLimit) {
+		super(accountNo, accountBalance, accountPassword);
+		this.overdraftLimit=overDraftLimit;
+	}
+	
+	public void displayAccount() {
+		super.displayAccount();
+		System.out.println("minimum balance is-->"+this.overdraftLimit);
+		System.out.println("====================================================================");
+	}
+	@Override
+	public void withdraw(double amount) {
+		if(getAccountBalance()>=amount) {
+			System.out.println("not available");
+		}
+		else {
+		setAccountBalance(getAccountBalance()-amount);
+		}
+	}
+	
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////Assignment 3//////////////////////////////////////////////////////////////////////////
+
+package AssignmentDay2_3;
+
+public class Assignment3 {
+
+	public static void main(String[] args) {
+		sbiAtm sb=new sbiAtm(123,5000, "abc");
+		sb.checkBalance();
+		System.out.println(sb.getPassword());
+		sb.changePassword(123, "abc", "efg");
+		System.out.println(sb.getPassword());
+		
+		iciciAtm ic=new iciciAtm(103,5000, "abd");
+		sb.checkBalance();
+		System.out.println(sb.getPassword());
+		sb.changePassword(123, "abd", "efg");
+		System.out.println(sb.getPassword());
+		
+	}
+
+}
+
+interface ATM{
+	
+	void withdraw(int accountNumber,double amount);
+	void changePassword(int accountNumber,String oldPassword,String newPassword);
+	void checkBalance();
+}
+
+class sbiAtm implements ATM{
+	int accountNumber;
+	double AccountBalance;
+	String password;
+	
+	public sbiAtm(int accountNumber, double AccountBalance, String password) {
+		super();
+		this.accountNumber = accountNumber;
+		this.AccountBalance = AccountBalance;
+		this.password = password;
+	}
+
+	
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+
+	public double getAccountBalance() {
+		return AccountBalance;
+	}
+
+
+	public void setAccountBalance(double accountBalance) {
+		AccountBalance = accountBalance;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+		
+	}
+
+
+	@Override
+	public void withdraw(int accountNumber, double amount) {
+		this.AccountBalance=AccountBalance-amount;
+		
+	}
+
+	@Override
+	public void changePassword(int accountNumber, String oldPassword, String newPassword) {
+		this.password=newPassword;
+		System.out.println("password change successfully");
+		
+	}
+
+	@Override
+	public void checkBalance() {
+		System.out.println("Balance is "+getAccountBalance());
+	}
+	
+	
+}
+
+class iciciAtm implements ATM{
+	int accountNumber;
+	double AccountBalance;
+	String password;
+	public iciciAtm(int accountNumber, double accountBalance, String password) {
+		super();
+		this.accountNumber = accountNumber;
+		this.AccountBalance = AccountBalance;
+		this.password = password;
+	}
+	
+	
+
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+
+
+	public double getAccountBalance() {
+		return AccountBalance;
+	}
+
+
+
+	public void setAccountBalance(double accountBalance) {
+		AccountBalance = accountBalance;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	@Override
+	public void withdraw(int accountNumber, double amount) {
+		this.AccountBalance=AccountBalance-amount;
+		
+	}
+
+	@Override
+	public void changePassword(int accountNumber, String oldPassword, String newPassword) {
+		this.password=newPassword;
+		System.out.println("password change successfully");
+		
+	}
+
+	@Override
+	public void checkBalance() {
+		System.out.println("Balance is "+getAccountBalance());
+		
+		
+	}
+}
+
